@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD AFRID FOISAL OPU - 3D Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        #app {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero-3d {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00ff41;
+            text-shadow: 0 0 20px #00ff41;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #00ff41;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        .hero-content a:hover {
+            background: #ff073a;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #00ff41;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: sectionFadeIn 1s ease-out;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00ff41;
+            text-align: center;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        #profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00ff41;
+            animation: profileGlow 2s ease-in-out infinite alternate;
+        }
+        .about-text {
+    max-width: 700px;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.about-text strong {
+    color: #00ff41;
+}
+
+        /* Skills Section */
+        #skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #00ff41;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: skillGlow 2s ease-in-out infinite alternate;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-item:hover::before {
+            left: 100%;
+        }
+
+        /* Projects Section */
+        #projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #00ff41;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: projectPulse 3s ease-in-out infinite;
+        }
+
+        .project-item:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 15px 30px rgba(0, 255, 65, 0.4);
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .contact-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Particle Background */
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: #00ff41;
+            border-radius: 50%;
+            animation: particleFloat 10s linear infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes textGlow {
+            from { filter: brightness(1) hue-rotate(0deg); }
+            to { filter: brightness(1.2) hue-rotate(10deg); }
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes sectionFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes skillGlow {
+            from { box-shadow: 0 0 5px rgba(0, 255, 65, 0.2); }
+            to { box-shadow: 0 0 15px rgba(0, 255, 65, 0.4); }
+        }
+
+        @keyframes projectPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes profileGlow {
+            from { box-shadow: 0 0 10px rgba(0, 255, 65, 0.3); }
+            to { box-shadow: 0 0 20px rgba(0, 255, 65, 0.6); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particle-bg" id="particle-bg"></div>
+    <div id="app">
+        <!-- Hero Section -->
+        <section id="hero">
+            <div id="hero-3d"></div>
+            <div class="hero-content">
+                <h1>MD AFRID FOISAL OPU</h1>
+                <p>2nd Semester CSE Student at IIUC</p>
+                <p>Cyber Security Enthusiast | Web Developer | DSA Learner</p>
+                <a href="#about">Explore My Work</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+       <section id="about">
+    <h2>About Me</h2>
+
+    <div class="about-content">
+        <img id="profile-pic" src="profilepic.jpg" alt="MD AFRID FOISAL OPU">
+
+        <div class="about-text">
+            <p>
+                Hi, I’m <strong>MD AFRID FOISAL OPU</strong>, a 2nd Semester CSE student at IIUC.
+            </p>
+
+            <p>
+                I’m currently exploring <strong>Cyber Security</strong> while actively working on 
+                <strong>Web Development</strong> and strengthening my foundation in 
+                <strong>Data Structures and Algorithms</strong>.
+            </p>
+
+            <p>
+                My long-term goal is to become a professional cybersecurity engineer and build 
+                secure, meaningful web applications that create real impact.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Skills & Learning Journey</h2>
+            <div id="skills-list">
+                <div class="skill-item">Cyber Security</div>
+                <div class="skill-item">Web Development</div>
+                <div class="skill-item">Data Structures & Algorithms</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">HTML</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Ethical Hacking</div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <div id="projects-list">
+                <div class="project-item">
+                    <a href="https://afrid25.github.io/Blood-Bank-App/" target="_blank" style="text-decoration: none; color: inherit;">
+                        <img src="bloodbank.png" alt="Blood for Life">
+                        <h3>Blood for Life – Blood Bank Management Website</h3>
+                        <p>A comprehensive blood bank management system to connect donors with those in need.</p>
+                        <p style="color: #00ff41; font-size: 0.9rem;">🔗 Live Demo | 📂 GitHub: https://github.com/Afrid25/BOOK-OF-DEEDS-update-</p>
+                    </a>
+                </div>
+                <div class="project-item">
+                    <img src="portfolio.jpg" alt="Portfolio Website">
+                    <h3>3D Animated Portfolio</h3>
+                    <p>An interactive 3D portfolio website showcasing skills and projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-content">
+                <p>Feel free to reach out for collaborations, opportunities, or just to connect!</p>
+                <p>Email: 25afridfoisal00@gmail.com</p>
+                <p>GitHub: <a href="https://github.com/Afrid25" target="_blank" style="color: #00ff41;">https://github.com/Afrid25</a></p>
+                <p>YouTube: <a href="https://youtube.com/@LifeCodeWithAfrid" target="_blank" style="color: #00ff41;">@LifeCodeWithAfrid</a></p>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js 3D Scene Setup
+        let scene, camera, renderer, cube, torus, particles;
+
+        function initThreeJS() {
+            // Scene setup
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0a0a0a);
+
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            // Renderer setup
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0); // Transparent background
+            document.getElementById('hero-3d').appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0x00ff41, 0.8);
+            directionalLight.position.set(1, 1, 1);
+            scene.add(directionalLight);
+
+            // Create 3D objects
+            createObjects();
+
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Start animation loop
+            animate();
+        }
+
+        function createObjects() {
+            // Cube
+            const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+            const cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff41, wireframe: true });
+            cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+            cube.position.x = -2;
+            scene.add(cube);
+
+            // Torus
+            const torusGeometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
+            const torusMaterial = new THREE.MeshPhongMaterial({ color: 0xff073a });
+            torus = new THREE.Mesh(torusGeometry, torusMaterial);
+            torus.position.x = 2;
+            scene.add(torus);
+
+            // Particles
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 1000;
+            const positions = new Float32Array(particlesCount * 3);
+
+            for (let i = 0; i < particlesCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 20;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const particlesMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.02 });
+            particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particles);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate objects
+            if (cube) cube.rotation.x += 0.01;
+            if (cube) cube.rotation.y += 0.01;
+
+            if (torus) torus.rotation.x += 0.005;
+            if (torus) torus.rotation.z += 0.01;
+
+            if (particles) particles.rotation.y += 0.001;
+
+            // Subtle camera movement
+            camera.position.x = Math.sin(Date.now() * 0.0005) * 0.5;
+            camera.position.y = Math.cos(Date.now() * 0.0003) * 0.3;
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particleBg = document.getElementById('particle-bg');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
+                particleBg.appendChild(particle);
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initThreeJS();
+            createParticles();
+
+            // Smooth scrolling for navigation
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
