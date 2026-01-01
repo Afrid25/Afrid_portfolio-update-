@@ -4,48 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD AFRID FOISAL OPU - 3D Portfolio</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <div class="particle-bg" id="particle-bg"></div>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading Portfolio...</h2>
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div id="nav-dots">
+        <div class="nav-dot active" data-section="hero" title="Home"></div>
+        <div class="nav-dot" data-section="about" title="About"></div>
+        <div class="nav-dot" data-section="skills" title="Skills"></div>
+        <div class="nav-dot" data-section="projects" title="Projects"></div>
+        <div class="nav-dot" data-section="contact" title="Contact"></div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div id="scroll-progress">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn">☰</button>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+        <div class="mobile-menu-content">
+            <button id="close-mobile-menu">×</button>
+            <a href="#hero" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Particle Background -->
+    <div id="particle-bg"></div>
+
+    <!-- Main App -->
     <div id="app">
         <!-- Hero Section -->
-        <section id="hero">
+        <section id="hero" class="section">
             <div id="hero-3d"></div>
             <div class="hero-content">
-                <h1>MD AFRID FOISAL OPU</h1>
-                <p>2nd Semester CSE Student at IIUC</p>
-                <p>Cyber Security Enthusiast | Web Developer | DSA Learner</p>
-                <a href="#about">Explore My Work</a>
+                <h1 id="hero-name">MD AFRID FOISAL OPU</h1>
+                <p id="hero-title">2nd Semester CSE Student at IIUC</p>
+                <p id="hero-subtitle">Cyber Security Enthusiast | Web Developer | DSA Learner</p>
+                <a href="#about" class="cta-button">Explore My Work</a>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about">
+        <section id="about" class="section">
             <h2>About Me</h2>
             <div class="about-content">
-                <img id="profile-pic" src="../profilepic.jpg" alt="MD AFRID FOISAL OPU">
-                <div class="about-text">
-                    <p>
-                        Hi, I'm <strong>MD AFRID FOISAL OPU</strong>, a 2nd Semester CSE student at IIUC.
-                    </p>
-                    <p>
-                        I'm currently exploring <strong>Cyber Security</strong> while actively working on
-                        <strong>Web Development</strong> and strengthening my foundation in
-                        <strong>Data Structures & Algorithms</strong>.
-                    </p>
-                    <p>
-                        My long-term goal is to become a professional cybersecurity engineer and build
-                        secure, meaningful web applications that create real impact.
-                    </p>
+                <img id="profile-pic" src="assets/profile.jpg" alt="MD AFRID FOISAL OPU">
+                <div class="about-text" id="about-text">
+                    <p>Hi, I'm <strong>MD AFRID FOISAL OPU</strong>, a 2nd Semester CSE student at IIUC.</p>
+                    <p>I'm currently exploring <strong>Cyber Security</strong> while actively working on <strong>Web Development</strong> and strengthening my foundation in <strong>Data Structures & Algorithms</strong>.</p>
+                    <p>My long-term goal is to become a professional cybersecurity engineer and build secure, meaningful web applications that create real impact.</p>
                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills">
+        <section id="skills" class="section">
             <h2>Skills & Learning Journey</h2>
-            <div id="skills-list">
+            <div id="skills-list" class="skills-list">
                 <div class="skill-item">Cyber Security</div>
                 <div class="skill-item">Web Development</div>
                 <div class="skill-item">Data Structures & Algorithms</div>
@@ -58,22 +90,22 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects">
+        <section id="projects" class="section">
             <h2>Projects</h2>
-            <div id="projects-list">
-                <!-- Project 1 -->
+            <div id="projects-list" class="projects-list">
                 <div class="project-item">
-                    <a href="https://afrid25.github.io/Blood-Bank-App/" target="_blank" style="text-decoration: none; color: inherit;">
-                        <img src="../bloodbank.png" alt="Blood for Life">
+                    <a href="https://afrid25.github.io/Blood-Bank-App/" target="_blank" class="project-link">
+                        <img src="assets/bloodbank.jpg" alt="Blood for Life">
                         <h3>Blood for Life – Blood Bank Management Website</h3>
                         <p>A comprehensive blood bank management system to connect donors with those in need.</p>
-                        <p style="color: #00ff41; font-size: 0.9rem;">🔗 Live Demo | 📂 GitHub: https://github.com/Afrid25/BOOK-OF-DEEDS-update-</p>
+                        <div class="project-links">
+                            <span class="project-link-text">🔗 Live Demo</span>
+                            <span class="project-link-text">📂 GitHub</span>
+                        </div>
                     </a>
                 </div>
-
-                <!-- Project 2 -->
                 <div class="project-item">
-                    <img src="../portfolio.jpg" alt="Portfolio Website">
+                    <img src="assets/portfolio.jpg" alt="Portfolio Website">
                     <h3>3D Animated Portfolio</h3>
                     <p>An interactive 3D portfolio website showcasing skills and projects.</p>
                 </div>
@@ -81,26 +113,146 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact">
+        <section id="contact" class="section">
             <h2>Contact</h2>
             <div class="contact-content">
-                <p>Feel free to reach out for collaborations, opportunities, or just to connect!</p>
-                <p>Email: 25afridfoisal00@gmail.com</p>
-                <p>GitHub: <a href="https://github.com/Afrid25" target="_blank" style="color: #00ff41;">https://github.com/Afrid25</a></p>
-                <p>YouTube: <a href="https://youtube.com/@LifeCodeWithAfrid" target="_blank" style="color: #00ff41;">@LifeCodeWithAfrid</a></p>
+                <p id="contact-intro">Feel free to reach out for collaborations, opportunities, or just to connect!</p>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <span id="contact-email">25afridfoisal00@gmail.com</span></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/Afrid25" target="_blank" id="contact-github">https://github.com/Afrid25</a></p>
+                    <p><strong>YouTube:</strong> <a href="https://youtube.com/@LifeCodeWithAfrid" target="_blank" id="contact-youtube">@LifeCodeWithAfrid</a></p>
+                </div>
             </div>
         </section>
     </div>
 
-    <!-- Admin Panel (Hidden by default) -->
-    <div id="admin-panel" style="display: none;">
-        <div class="admin-overlay">
-            <div class="admin-content">
+    <!-- Admin Panel Overlay -->
+    <div id="admin-overlay" class="admin-overlay">
+        <div class="admin-panel">
+            <div class="admin-header">
                 <h3>Admin Panel</h3>
-                <div id="admin-controls">
-                    <!-- Admin controls will be populated by admin-panel.js -->
+                <button id="admin-close" class="admin-close-btn">×</button>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="profile">Profile</button>
+                <button class="admin-tab" data-tab="theme">Theme</button>
+                <button class="admin-tab" data-tab="skills">Skills</button>
+                <button class="admin-tab" data-tab="projects">Projects</button>
+                <button class="admin-tab" data-tab="contact">Contact</button>
+                <button class="admin-tab" data-tab="settings">Settings</button>
+            </div>
+
+            <div class="admin-content">
+                <!-- Profile Tab -->
+                <div id="profile-tab" class="admin-tab-content active">
+                    <h4>Profile Settings</h4>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" id="admin-name-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Title:</label>
+                        <input type="text" id="admin-title-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Subtitle:</label>
+                        <input type="text" id="admin-subtitle-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Profile Image:</label>
+                        <input type="file" id="admin-image-input" accept="image/*">
+                        <div id="image-preview" class="image-preview">
+                            <img src="assets/profile.jpg" alt="Preview">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>About Text:</label>
+                        <textarea id="admin-about-input" rows="6"></textarea>
+                    </div>
                 </div>
-                <button id="close-admin">Close</button>
+
+                <!-- Theme Tab -->
+                <div id="theme-tab" class="admin-tab-content">
+                    <h4>Theme Settings</h4>
+                    <div class="form-group">
+                        <label>Primary Color:</label>
+                        <input type="color" id="admin-primary-color">
+                    </div>
+                    <div class="form-group">
+                        <label>Accent Color:</label>
+                        <input type="color" id="admin-accent-color">
+                    </div>
+                    <div class="form-group">
+                        <label>Background:</label>
+                        <select id="admin-background">
+                            <option value="linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)">Dark Cyber</option>
+                            <option value="linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)">Deep Blue</option>
+                            <option value="linear-gradient(135deg, #2d1b69 0%, #11998e 100%)">Purple Ocean</option>
+                            <option value="linear-gradient(135deg, #667eea 0%, #764ba2 100%)">Royal Blue</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Skills Tab -->
+                <div id="skills-tab" class="admin-tab-content">
+                    <h4>Skills Management</h4>
+                    <div id="admin-skills-list"></div>
+                    <button id="add-skill-btn" class="admin-btn">Add Skill</button>
+                </div>
+
+                <!-- Projects Tab -->
+                <div id="projects-tab" class="admin-tab-content">
+                    <h4>Projects Management</h4>
+                    <div id="admin-projects-list"></div>
+                    <button id="add-project-btn" class="admin-btn">Add Project</button>
+                </div>
+
+                <!-- Contact Tab -->
+                <div id="contact-tab" class="admin-tab-content">
+                    <h4>Contact Information</h4>
+                    <div class="form-group">
+                        <label>Intro Text:</label>
+                        <textarea id="admin-contact-intro" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="admin-contact-email">
+                    </div>
+                    <div class="form-group">
+                        <label>GitHub URL:</label>
+                        <input type="url" id="admin-contact-github">
+                    </div>
+                    <div class="form-group">
+                        <label>YouTube URL:</label>
+                        <input type="url" id="admin-contact-youtube">
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id="settings-tab" class="admin-tab-content">
+                    <h4>Admin Settings</h4>
+                    <div class="form-group">
+                        <label>Current Password:</label>
+                        <input type="password" id="current-password">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password:</label>
+                        <input type="password" id="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password:</label>
+                        <input type="password" id="confirm-password">
+                    </div>
+                    <button id="change-password-btn" class="admin-btn">Change Password</button>
+                    <hr>
+                    <button id="reset-data-btn" class="admin-btn danger">Reset All Data</button>
+                </div>
+            </div>
+
+            <div class="admin-actions">
+                <button id="admin-save" class="admin-btn primary">Save Changes</button>
+                <button id="admin-preview" class="admin-btn">Preview</button>
             </div>
         </div>
     </div>
@@ -108,9 +260,9 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="scripts/three.js"></script>
+    <script src="scripts/3d.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/admin.js"></script>
     <script src="scripts/main.js"></script>
-    <script src="scripts/admin-login.js"></script>
-    <script src="scripts/admin-panel.js"></script>
 </body>
 </html>
