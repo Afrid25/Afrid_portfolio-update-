@@ -508,16 +508,14 @@ My long-term goal is to become a professional cybersecurity engineer and build s
         const projectsList = document.getElementById('projects-list');
         projectsList.innerHTML = this.data.projects.map(project => `
             <div class="project-item">
-                <a href="${project.link}" target="_blank" class="project-link">
-                    <img src="${project.image}" alt="${project.title}">
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
-                    <div class="project-links">
-                        ${project.link ? '<span class="project-link-text">🔗 Live Demo</span>' : ''}
-                        ${project.link && project.github ? ' | ' : ''}
-                        ${project.github ? '<span class="project-link-text">📂 GitHub</span>' : ''}
-                    </div>
-                </a>
+                <img src="${project.image}" alt="${project.title}">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <div class="project-links">
+                    ${project.link ? '<a href="${project.link}" target="_blank" class="project-link-text">🔗 Live Demo</a>' : ''}
+                    ${project.link && project.github ? ' | ' : ''}
+                    ${project.github ? '<a href="${project.github}" target="_blank" class="project-link-text">📂 GitHub</a>' : ''}
+                </div>
             </div>
         `).join('');
 
