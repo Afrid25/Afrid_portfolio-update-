@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="assets/profile.jpg" type="image/jpg">
 </head>
-<body>
+<body style="background: #0a0a0a !important; color: #ffffff;">
     <!-- Loading Screen -->
-    <div id="loading-screen">
+    <div id="loading-screen" style="background: #0a0a0a !important;">
         <div class="loading-content">
             <div class="loading-spinner"></div>
             <h2>Loading Portfolio...</h2>
@@ -186,8 +186,17 @@
                         <input type="color" id="admin-accent-color" value="#ff073a">
                     </div>
                     <div class="form-group">
-                        <label for="admin-background">Background Gradient:</label>
-                        <input type="text" id="admin-background" value="linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)">
+                        <label for="admin-background">Background Theme:</label>
+                        <select id="admin-background">
+                            <option value="linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)">Classic Dark</option>
+                            <option value="linear-gradient(135deg, #000000 0%, #0a0a0a 100%)">Deep Black</option>
+                            <option value="linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)">Midnight</option>
+                            <option value="linear-gradient(135deg, #0d0d0d 0%, #1b1b1b 100%)">Hacker Dark</option>
+                            <option value="linear-gradient(135deg, #0a0a0a 0%, #141414 100%)">Terminal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button id="apply-theme-btn" class="admin-btn primary">Apply Theme</button>
                     </div>
                 </div>
 
