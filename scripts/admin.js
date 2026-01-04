@@ -53,8 +53,8 @@ My long-term goal is to become a professional cybersecurity engineer and build s
                     title: '3D Animated Portfolio',
                     description: 'An interactive 3D portfolio website showcasing skills and projects.',
                     image: 'assets/portfolio.jpg',
-                    link: '',
-                    github: ''
+                    link: 'https://afrid25.github.io/portfolio-new/',
+                    github: 'https://github.com/Afrid25/portfolio-new'
                 }
             ],
             contact: {
@@ -228,6 +228,14 @@ My long-term goal is to become a professional cybersecurity engineer and build s
                 if (confirm('Are you sure you want to reset all data? This cannot be undone.')) {
                     this.resetData();
                 }
+            });
+        }
+
+        // Apply theme
+        const applyThemeBtn = document.getElementById('apply-theme-btn');
+        if (applyThemeBtn) {
+            applyThemeBtn.addEventListener('click', () => {
+                this.applyThemeOnly();
             });
         }
     }
@@ -527,6 +535,17 @@ My long-term goal is to become a professional cybersecurity engineer and build s
     resetData() {
         localStorage.removeItem('portfolio-admin-data');
         location.reload();
+    }
+
+    applyThemeOnly() {
+        const primary = document.getElementById('admin-primary-color').value;
+        const accent = document.getElementById('admin-accent-color').value;
+        const background = document.getElementById('admin-background').value;
+
+        if (window.uiManager) {
+            window.uiManager.updateTheme(primary, accent, background);
+            window.uiManager.showNotification('Theme applied!', 'success');
+        }
     }
 }
 
