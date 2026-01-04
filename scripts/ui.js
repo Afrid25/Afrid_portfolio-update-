@@ -216,16 +216,26 @@ class UIManager {
     showNotification(message, type = 'success') {
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
-        notification.textContent = message;
+        notification.innerHTML = `<span>✓ ${message}</span><button class="notification-close">×</button>`;
 
         document.body.appendChild(notification);
 
-        setTimeout(() => {
+        // Auto remove after 5 seconds
+        const autoRemove = setTimeout(() => {
             notification.style.animation = 'slideOut 0.3s ease';
             setTimeout(() => {
                 notification.remove();
             }, 300);
-        }, 3000);
+        }, 5000);
+
+        // Manual close
+        notification.querySelector('.notification-close').addEventListener('click', () => {
+            clearTimeout(autoRemove);
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        });
     }
 
     // Public methods
